@@ -62,14 +62,5 @@ Response body:
 
 
 
-## Installation
-
-Provide code examples and explanations of how to get the project.
-
-
-## Tests
-
-Describe and show how to run the tests with code examples.
-
 
 
