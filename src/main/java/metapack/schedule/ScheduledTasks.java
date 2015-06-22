@@ -16,7 +16,8 @@ public class ScheduledTasks {
     @Autowired
     StoreLocationsService storeLocationsService;
 
-    @Scheduled(cron = "0 0 * * * ?")
+//    @Scheduled(cron = "0 0 * * * ?")${rates.refresh.cron}
+    @Scheduled(cron = "${locations.refresh.cron}")
     @Async
     public void refreshStoreLocationData() throws Exception {
         System.out.println("UPDATE CACHE"+new Date());
