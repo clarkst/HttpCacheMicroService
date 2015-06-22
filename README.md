@@ -13,11 +13,10 @@ A standalone microservice that collects data every hour from an external service
 * Scheduling refresh - asynchronous calls to update cache hourly.
 
 ### Future considerations / backlog items for discussion at review.
-* Better documentation via Alps or HAL
 * Unit tests as well as integration tests
 * Case sensitivity of search parameter
 * Include date of last refresh of data
-* Versioning of the API
+* Better documentation via Alps,HAL etc
 * Expand the rest api to include other data access patterns and cache refresh method
 * Hystrix caching and monitoring
 * Swagger for service documentation discovery
@@ -29,7 +28,7 @@ A standalone microservice that collects data every hour from an external service
 
 ### GET /api/locations?city=[cityname]
 
-Example: http://localhost:8080/api/locations?city=London
+Example: http://localhost:8080/api/v1/locations?city=London
 
 Response body:
 

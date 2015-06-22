@@ -31,7 +31,7 @@ import static org.springframework.test.util.MatcherAssertionErrors.assertThat;
 @WebIntegrationTest()
 public class ApplicationIntegrationTests {
 
-    public static final String HTTP_LOCALHOST_8080_API_LOCATIONS_CITY = "http://localhost:8080/api/locations?city=";
+    public static final String HTTP_LOCALHOST_8080_API_LOCATIONS_CITY = "http://localhost:8080/api/v1/locations?city=";
     private static final String SEARCH_CITY_VALUE = "Bristol";
     public static final String CITY_PROPERTY = "city";
     public static final String ADDRESS_PROPERTY = "address";
@@ -66,10 +66,10 @@ public class ApplicationIntegrationTests {
     public void shouldReturnErrorForXMLAcceptHeader() {
 
         HttpHeaders requestHeaders = new HttpHeaders();
-        List<MediaType> acceptableMediaTypes = new ArrayList<MediaType>();
+        List<MediaType> acceptableMediaTypes = new ArrayList<>();
         acceptableMediaTypes.add(MediaType.APPLICATION_XML);
         requestHeaders.setAccept(acceptableMediaTypes);
-        HttpEntity<?> requestEntity = new HttpEntity<Object>(requestHeaders);
+        HttpEntity<?> requestEntity = new HttpEntity<>(requestHeaders);
         RestTemplate restTemplate = new RestTemplate();
         try {
             ResponseEntity<StoreLocation[]> responseEntity = restTemplate.exchange(HTTP_LOCALHOST_8080_API_LOCATIONS_CITY + SEARCH_CITY_VALUE, HttpMethod.GET, requestEntity, StoreLocation[].class);

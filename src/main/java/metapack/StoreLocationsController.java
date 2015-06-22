@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/locations")
+@RequestMapping("/v1/locations")
 public class StoreLocationsController {
 
     @Autowired
