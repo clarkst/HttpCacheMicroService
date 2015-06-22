@@ -42,6 +42,7 @@ public class ApplicationIntegrationTests {
         RestTemplate testClient = new RestTemplate();
         testClient.setErrorHandler(new DefaultResponseErrorHandler());
         ResponseEntity<StoreLocation[]> responseEntity = testClient.getForEntity(HTTP_LOCALHOST_8080_API_LOCATIONS_CITY + SEARCH_CITY_VALUE, StoreLocation[].class);
+
         assertTrue("Response code should be successful", responseEntity.getStatusCode().is2xxSuccessful());
         assertThat("Response should have results", responseEntity.getBody(), not(emptyArray()));
 
@@ -57,7 +58,7 @@ public class ApplicationIntegrationTests {
         try {
             ResponseEntity<StoreLocation[]> responseEntity = testClient.getForEntity(HTTP_LOCALHOST_8080_API_LOCATIONS_CITY + UNKNOWN_CITY, StoreLocation[].class);
         } catch (HttpClientErrorException httpClientErrorException) {
-            assertThat(httpClientErrorException.getStatusCode(), is(HttpStatus.NOT_FOUND));
+            assertThat("Status code should be 404 Not Found",httpClientErrorException.getStatusCode(), is(HttpStatus.NOT_FOUND));
             throw httpClientErrorException;
         }
     }
@@ -66,20 +67,21 @@ public class ApplicationIntegrationTests {
     public void shouldReturnErrorForXMLAcceptHeader() {
 
         HttpHeaders requestHeaders = new HttpHeaders();
+
         List<MediaType> acceptableMediaTypes = new ArrayList<>();
         acceptableMediaTypes.add(MediaType.APPLICATION_XML);
         requestHeaders.setAccept(acceptableMediaTypes);
+
         HttpEntity<?> requestEntity = new HttpEntity<>(requestHeaders);
+
         RestTemplate restTemplate = new RestTemplate();
         try {
             ResponseEntity<StoreLocation[]> responseEntity = restTemplate.exchange(HTTP_LOCALHOST_8080_API_LOCATIONS_CITY + SEARCH_CITY_VALUE, HttpMethod.GET, requestEntity, StoreLocation[].class);
 
         } catch (HttpClientErrorException httpClientErrorException) {
-            assertThat(httpClientErrorException.getStatusCode(), is(HttpStatus.NOT_ACCEPTABLE));
+            assertThat("Status code should be 406 Not Acceptable",httpClientErrorException.getStatusCode(), is(HttpStatus.NOT_ACCEPTABLE));
             throw httpClientErrorException;
         }
-
-
     }
 
 }

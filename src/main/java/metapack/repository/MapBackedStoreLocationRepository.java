@@ -17,7 +17,7 @@ public class MapBackedStoreLocationRepository implements StoreLocationRepository
 
     private static Logger log = LoggerFactory.getLogger(MapBackedStoreLocationRepository.class);
 
-    private static final Map<String, List<StoreLocation>> cache = new HashMap<String, List<StoreLocation>>();
+    private static final Map<String, List<StoreLocation>> cache = new HashMap<>();
 
     @Override
     public List<StoreLocation> findByCity(String city) {
@@ -40,4 +40,10 @@ public class MapBackedStoreLocationRepository implements StoreLocationRepository
         }
     }
 
+    @Override
+    public boolean isEmpty() {
+        synchronized (cache) {
+            return cache.isEmpty();
+        }
+    }
 }

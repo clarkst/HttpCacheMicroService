@@ -1,6 +1,8 @@
 package metapack.schedule;
 
 import metapack.service.StoreLocationsService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -13,14 +15,16 @@ import java.util.Date;
 public class ScheduledTasks {
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+
+    private static Logger log = LoggerFactory.getLogger(ScheduledTasks.class);
+
     @Autowired
     StoreLocationsService storeLocationsService;
 
-//    @Scheduled(cron = "0 0 * * * ?")${rates.refresh.cron}
     @Scheduled(cron = "${locations.refresh.cron}")
     @Async
     public void refreshStoreLocationData() throws Exception {
-        System.out.println("UPDATE CACHE"+new Date());
+        log.info("Scheduled update of cache data " + new Date());
         storeLocationsService.refreshStoreLocationsCache();
     }
 }
