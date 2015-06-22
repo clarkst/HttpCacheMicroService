@@ -13,7 +13,7 @@ A standalone microservice that collects data every hour from an external service
 * Scheduling refresh - asynchronous calls to update cache hourly.
 
 ### Future considerations / backlog items for discussion at review.
-* Unit tests as well as integration tests
+* Unit tests as well as integration tests - allow integration tests to be run separately.
 * Case sensitivity of search parameter
 * Include date of last refresh of data
 * Better documentation via Alps,HAL etc
