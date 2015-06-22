@@ -1,7 +1,7 @@
 # store-locations
 ## Synopsis
 
-A standalone microservice that collects data evry hour from an external service via http and stores it in a local cache which can be accessed by a restful API.
+A standalone microservice that collects data every hour from an external service via http and stores it in a local cache which can be accessed by a restful API.
 
 ## Features and Design Considerations
 
